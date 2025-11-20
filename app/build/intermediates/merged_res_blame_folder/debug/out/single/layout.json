@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-mergeDebugResources-27:\\layout\\activity_timesheet.xml",
+        "source": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-main-30:\\layout\\activity_timesheet.xml"
+    },
+    {
+        "merged": "com.astinil.AndroidTimesheet.app-mergeDebugResources-27:/layout/activity_timesheet.xml",
+        "source": "com.astinil.AndroidTimesheet.app-main-30:/layout/activity_timesheet.xml"
+    },
+    {
+        "merged": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-mergeDebugResources-27:\\layout\\activity_register.xml",
+        "source": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-main-30:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-mergeDebugResources-27:\\layout\\nav_header_main.xml",
+        "source": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-main-30:\\layout\\nav_header_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-mergeDebugResources-27:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-main-30:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-mergeDebugResources-27:\\layout\\dialog_checkin.xml",
+        "source": "C:\\Users\\91817\\.gradle\\daemon\\8.5\\com.astinil.AndroidTimesheet.app-main-30:\\layout\\dialog_checkin.xml"
+    }
+]

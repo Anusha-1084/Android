@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TimeSheetApp</string>
+    <string name="login_title">Timesheet Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="notes">Notes</string>
+    <string name="submit">Submit</string>
+</resources>

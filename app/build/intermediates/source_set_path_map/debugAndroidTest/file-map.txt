@@ -1,0 +1,4 @@
+com.astinil.AndroidTimeSheet.test.app-androidTest-0 C:\Users\hp\Downloads\TimesheetApp_Final2\app\build\generated\res\resValues\androidTest\debug
+com.astinil.AndroidTimeSheet.test.app-mergeDebugAndroidTestResources-1 C:\Users\hp\Downloads\TimesheetApp_Final2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.astinil.AndroidTimeSheet.test.app-mergeDebugAndroidTestResources-2 C:\Users\hp\Downloads\TimesheetApp_Final2\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.astinil.AndroidTimeSheet.test.app-merged_res-3 C:\Users\hp\Downloads\TimesheetApp_Final2\app\build\intermediates\merged_res\debugAndroidTest

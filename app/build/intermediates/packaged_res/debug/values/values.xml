@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#03A9F4</color>
+    <color name="primary">#1976D2</color>
+    <color name="primary_dark">#0D47A1</color>
+    <string name="app_name">TimeSheetApp</string>
+    <string name="login">Login</string>
+    <string name="login_title">Timesheet Login</string>
+    <string name="notes">Notes</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="username">Username</string>
+    <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">?android:attr/windowBackground</item>
+    </style>
+</resources>
