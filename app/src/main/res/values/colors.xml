@@ -3,4 +3,8 @@
     <color name="primary">#1976D2</color>
     <color name="primary_dark">#0D47A1</color>
     <color name="accent">#03A9F4</color>
+
+    <!-- Light Gray Button -->
+    <color name="light_gray">#E0E0E0</color>
+    <color name="dark_text">#000000</color>
 </resources>

@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import com.astinil.AndroidTimesheet.R;
 import com.astinil.AndroidTimesheet.api.ApiClient;
 import com.astinil.AndroidTimesheet.api.ApiService;
+import com.astinil.AndroidTimesheet.api.model.CheckInDto;
 import com.astinil.AndroidTimesheet.api.model.CheckOutDto;
 
 import retrofit2.Call;
@@ -51,11 +52,9 @@ public class CheckinDialogFragment extends DialogFragment {
     }
 
     private void sendCheckin(Dialog dialog) {
+        ApiService api = ApiClient.getSecuredApi(requireContext());
 
-        ApiService api = ApiClient.getSecuredApi(requireContext()); // TOKEN ENABLED
-
-        api.checkInCheckout().enqueue(new Callback<CheckOutDto>() {
-
+        api.checkIn().enqueue(new Callback<CheckOutDto>() {
             @Override
             public void onResponse(Call<CheckOutDto> call, Response<CheckOutDto> response) {
 
@@ -68,6 +67,7 @@ public class CheckinDialogFragment extends DialogFragment {
                     Toast.makeText(getContext(),
                             "Checked in at: " + data.checkInTime,
                             Toast.LENGTH_LONG).show();
+
                 } else {
                     Toast.makeText(getContext(),
                             "Check-in failed", Toast.LENGTH_SHORT).show();

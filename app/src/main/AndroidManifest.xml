@@ -20,22 +20,30 @@
             </intent-filter>
         </activity>
 
-        <!-- Register Activity (Missing Earlier – THIS caused crash) -->
+        <!-- Register Screen -->
         <activity
             android:name="com.astinil.AndroidTimesheet.ui.activity.RegisterActivity"
             android:exported="false" />
 
-        <!-- Timesheet Activity -->
+        <!-- Home Screen (After Login) -->
+        <activity
+            android:name="com.astinil.AndroidTimesheet.ui.activity.HomeActivity"
+            android:exported="false" />
+
+        <!-- Timesheet Screen -->
         <activity
             android:name="com.astinil.AndroidTimesheet.ui.activity.TimesheetActivity"
             android:exported="false" />
 
-        <!-- Main Activity -->
+        <!-- Time Log Screen -->
+        <activity
+            android:name="com.astinil.AndroidTimesheet.ui.activity.TimeLogActivity"
+            android:exported="false" />
+
+        <!-- Not used, but keeping -->
         <activity
             android:name="com.astinil.AndroidTimesheet.MainActivity"
             android:exported="false" />
-
     </application>
-
 
 </manifest>

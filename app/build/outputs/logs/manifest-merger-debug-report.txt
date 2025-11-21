@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-41:12
-INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-41:12
-INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-41:12
-INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-41:12
+ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-49:12
+INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-49:12
+INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-49:12
+INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:1:1-49:12
 MERGED from [androidx.databinding:viewbinding:8.1.4] C:\Users\91817\.gradle\caches\transforms-3\e757c85872bb7a09d52ff062f38622ae\transformed\jetified-viewbinding-8.1.4\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\91817\.gradle\caches\transforms-3\2fc86c280e2a5d0780c8de33b5e5f7f1\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\91817\.gradle\caches\transforms-3\c98c3faf59ac78bf9316d6ea1836750a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -58,8 +58,8 @@ ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest
 	android:name
 		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:3:22-64
 application
-ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:5:5-38:19
-INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:5:5-38:19
+ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:5:5-47:19
+INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:5:5-47:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\91817\.gradle\caches\transforms-3\2fc86c280e2a5d0780c8de33b5e5f7f1\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\91817\.gradle\caches\transforms-3\2fc86c280e2a5d0780c8de33b5e5f7f1\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\91817\.gradle\caches\transforms-3\c98c3faf59ac78bf9316d6ea1836750a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -112,18 +112,30 @@ ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest
 		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:26:13-37
 	android:name
 		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:25:13-85
-activity#com.astinil.AndroidTimesheet.ui.activity.TimesheetActivity
+activity#com.astinil.AndroidTimesheet.ui.activity.HomeActivity
 ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:29:9-31:40
 	android:exported
 		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:31:13-37
 	android:name
-		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:30:13-86
-activity#com.astinil.AndroidTimesheet.MainActivity
+		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:30:13-81
+activity#com.astinil.AndroidTimesheet.ui.activity.TimesheetActivity
 ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:34:9-36:40
 	android:exported
 		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:35:13-69
+		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:35:13-86
+activity#com.astinil.AndroidTimesheet.ui.activity.TimeLogActivity
+ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:39:9-41:40
+	android:exported
+		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:40:13-84
+activity#com.astinil.AndroidTimesheet.MainActivity
+ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:44:9-46:40
+	android:exported
+		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:45:13-69
 uses-sdk
 INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml

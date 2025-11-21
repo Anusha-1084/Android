@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +34,22 @@ public final class ActivityTimesheetBinding implements ViewBinding {
   public final CalendarView calendarView;
 
   @NonNull
+  public final LinearLayout footerBar;
+
+  @NonNull
   public final ImageView imgProfile;
+
+  @NonNull
+  public final ImageView ivBack;
+
+  @NonNull
+  public final LinearLayout profileCard;
+
+  @NonNull
+  public final Spinner spinnerMonth;
+
+  @NonNull
+  public final Spinner spinnerYear;
 
   @NonNull
   public final TextView tvEmpId;
@@ -44,20 +61,32 @@ public final class ActivityTimesheetBinding implements ViewBinding {
   public final TextView tvTimer;
 
   @NonNull
+  public final TextView tvTimesheetTitle;
+
+  @NonNull
   public final TextView tvUserIdName;
 
   private ActivityTimesheetBinding(@NonNull ScrollView rootView, @NonNull Button btnCheckInOut,
-      @NonNull Button btnLogout, @NonNull CalendarView calendarView, @NonNull ImageView imgProfile,
-      @NonNull TextView tvEmpId, @NonNull TextView tvStatus, @NonNull TextView tvTimer,
+      @NonNull Button btnLogout, @NonNull CalendarView calendarView,
+      @NonNull LinearLayout footerBar, @NonNull ImageView imgProfile, @NonNull ImageView ivBack,
+      @NonNull LinearLayout profileCard, @NonNull Spinner spinnerMonth,
+      @NonNull Spinner spinnerYear, @NonNull TextView tvEmpId, @NonNull TextView tvStatus,
+      @NonNull TextView tvTimer, @NonNull TextView tvTimesheetTitle,
       @NonNull TextView tvUserIdName) {
     this.rootView = rootView;
     this.btnCheckInOut = btnCheckInOut;
     this.btnLogout = btnLogout;
     this.calendarView = calendarView;
+    this.footerBar = footerBar;
     this.imgProfile = imgProfile;
+    this.ivBack = ivBack;
+    this.profileCard = profileCard;
+    this.spinnerMonth = spinnerMonth;
+    this.spinnerYear = spinnerYear;
     this.tvEmpId = tvEmpId;
     this.tvStatus = tvStatus;
     this.tvTimer = tvTimer;
+    this.tvTimesheetTitle = tvTimesheetTitle;
     this.tvUserIdName = tvUserIdName;
   }
 
@@ -106,9 +135,39 @@ public final class ActivityTimesheetBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.footerBar;
+      LinearLayout footerBar = ViewBindings.findChildViewById(rootView, id);
+      if (footerBar == null) {
+        break missingId;
+      }
+
       id = R.id.imgProfile;
       ImageView imgProfile = ViewBindings.findChildViewById(rootView, id);
       if (imgProfile == null) {
+        break missingId;
+      }
+
+      id = R.id.ivBack;
+      ImageView ivBack = ViewBindings.findChildViewById(rootView, id);
+      if (ivBack == null) {
+        break missingId;
+      }
+
+      id = R.id.profileCard;
+      LinearLayout profileCard = ViewBindings.findChildViewById(rootView, id);
+      if (profileCard == null) {
+        break missingId;
+      }
+
+      id = R.id.spinnerMonth;
+      Spinner spinnerMonth = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerMonth == null) {
+        break missingId;
+      }
+
+      id = R.id.spinnerYear;
+      Spinner spinnerYear = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerYear == null) {
         break missingId;
       }
 
@@ -130,6 +189,12 @@ public final class ActivityTimesheetBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvTimesheetTitle;
+      TextView tvTimesheetTitle = ViewBindings.findChildViewById(rootView, id);
+      if (tvTimesheetTitle == null) {
+        break missingId;
+      }
+
       id = R.id.tvUserIdName;
       TextView tvUserIdName = ViewBindings.findChildViewById(rootView, id);
       if (tvUserIdName == null) {
@@ -137,7 +202,8 @@ public final class ActivityTimesheetBinding implements ViewBinding {
       }
 
       return new ActivityTimesheetBinding((ScrollView) rootView, btnCheckInOut, btnLogout,
-          calendarView, imgProfile, tvEmpId, tvStatus, tvTimer, tvUserIdName);
+          calendarView, footerBar, imgProfile, ivBack, profileCard, spinnerMonth, spinnerYear,
+          tvEmpId, tvStatus, tvTimer, tvTimesheetTitle, tvUserIdName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

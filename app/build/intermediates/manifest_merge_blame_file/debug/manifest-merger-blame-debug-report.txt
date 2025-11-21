@@ -24,7 +24,7 @@
 17-->[androidx.core:core:1.9.0] C:\Users\91817\.gradle\caches\transforms-3\907fab34ec8e8b55b9608e4ddd9fb51d\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:5:5-38:19
+19-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:5:5-47:19
 20        android:allowBackup="true"
 20-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:6:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -62,7 +62,7 @@
 39            </intent-filter>
 40        </activity>
 41
-42        <!-- Register Activity (Missing Earlier – THIS caused crash) -->
+42        <!-- Register Screen -->
 43        <activity
 43-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:24:9-26:40
 44            android:name="com.astinil.AndroidTimesheet.ui.activity.RegisterActivity"
@@ -70,43 +70,59 @@
 45            android:exported="false" />
 45-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:26:13-37
 46
-47        <!-- Timesheet Activity -->
+47        <!-- Home Screen (After Login) -->
 48        <activity
 48-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:29:9-31:40
-49            android:name="com.astinil.AndroidTimesheet.ui.activity.TimesheetActivity"
-49-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:30:13-86
+49            android:name="com.astinil.AndroidTimesheet.ui.activity.HomeActivity"
+49-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:30:13-81
 50            android:exported="false" />
 50-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:31:13-37
 51
-52        <!-- Main Activity -->
+52        <!-- Timesheet Screen -->
 53        <activity
 53-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:34:9-36:40
-54            android:name="com.astinil.AndroidTimesheet.MainActivity"
-54-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:35:13-69
+54            android:name="com.astinil.AndroidTimesheet.ui.activity.TimesheetActivity"
+54-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:35:13-86
 55            android:exported="false" />
 55-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:36:13-37
 56
-57        <provider
-57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-58            android:name="androidx.startup.InitializationProvider"
-58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-59            android:authorities="com.astinil.AndroidTimesheet.androidx-startup"
-59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-60            android:exported="false" >
-60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-61            <meta-data
-61-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-62                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-62-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-63                android:value="androidx.startup" />
-63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-64            <meta-data
-64-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\91817\.gradle\caches\transforms-3\f6b1b6e7790560ce2957c3bb4351aa9c\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
-65                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-65-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\91817\.gradle\caches\transforms-3\f6b1b6e7790560ce2957c3bb4351aa9c\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
-66                android:value="androidx.startup" />
-66-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\91817\.gradle\caches\transforms-3\f6b1b6e7790560ce2957c3bb4351aa9c\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
-67        </provider>
-68    </application>
-69
-70</manifest>
+57        <!-- Time Log Screen -->
+58        <activity
+58-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:39:9-41:40
+59            android:name="com.astinil.AndroidTimesheet.ui.activity.TimeLogActivity"
+59-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:40:13-84
+60            android:exported="false" />
+60-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:41:13-37
+61
+62        <!-- Not used, but keeping -->
+63        <activity
+63-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:44:9-46:40
+64            android:name="com.astinil.AndroidTimesheet.MainActivity"
+64-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:45:13-69
+65            android:exported="false" />
+65-->C:\Users\91817\Desktop\TimeSheet_Android\app\src\main\AndroidManifest.xml:46:13-37
+66
+67        <provider
+67-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+68            android:name="androidx.startup.InitializationProvider"
+68-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+69            android:authorities="com.astinil.AndroidTimesheet.androidx-startup"
+69-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+70            android:exported="false" >
+70-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+71            <meta-data
+71-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+72                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+72-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+73                android:value="androidx.startup" />
+73-->[androidx.emoji2:emoji2:1.2.0] C:\Users\91817\.gradle\caches\transforms-3\321016aa715bf04a2ce7194cdf0d96ab\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+74            <meta-data
+74-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\91817\.gradle\caches\transforms-3\f6b1b6e7790560ce2957c3bb4351aa9c\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+75                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+75-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\91817\.gradle\caches\transforms-3\f6b1b6e7790560ce2957c3bb4351aa9c\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+76                android:value="androidx.startup" />
+76-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\91817\.gradle\caches\transforms-3\f6b1b6e7790560ce2957c3bb4351aa9c\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+77        </provider>
+78    </application>
+79
+80</manifest>

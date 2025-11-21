@@ -6,6 +6,7 @@ import com.astinil.AndroidTimesheet.api.model.CheckOutDto;
 import com.astinil.AndroidTimesheet.api.model.CheckOutStatusDto;
 import com.astinil.AndroidTimesheet.api.model.LoginRequest;
 import com.astinil.AndroidTimesheet.api.model.SignupRequest;
+import com.astinil.AndroidTimesheet.api.model.TimeSheetRequest;
 
 import java.util.Map;
 
@@ -24,11 +25,15 @@ public interface ApiService {
     Call<ApiResponse<Map<String, String>>> register(@Body SignupRequest signupRequest);
 
     @POST("/checkout/checkin")
-    Call<CheckOutDto> checkInCheckout();
+    Call<CheckOutDto> checkIn();
 
     @POST("/checkout")
     Call<CheckOutDto> checkOut(@Query("totalHours") String totalHours);
 
     @GET("/checkout/status")
     Call<CheckOutStatusDto> getCheckOutStatus();
+
+    // ⭐ Timesheet Submit API
+    @POST("/timesheet/log")
+    Call<ApiResponse<Void>> submitTimesheet(@Body TimeSheetRequest request);
 }

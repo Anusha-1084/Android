@@ -3,17 +3,24 @@ package com.astinil.AndroidTimesheet.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.astinil.AndroidTimesheet.R;
 import com.astinil.AndroidTimesheet.api.ApiClient;
 import com.astinil.AndroidTimesheet.api.ApiService;
+import com.astinil.AndroidTimesheet.api.model.CheckInDto;
 import com.astinil.AndroidTimesheet.api.model.CheckOutDto;
 import com.astinil.AndroidTimesheet.api.model.CheckOutStatusDto;
 import com.astinil.AndroidTimesheet.util.Prefs;
@@ -21,6 +28,7 @@ import com.astinil.AndroidTimesheet.util.Prefs;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -28,6 +36,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TimesheetActivity extends AppCompatActivity {
+
+    private static final String TAG = "TimesheetActivity";
+    private static final long CHECKOUT_COOLDOWN_MS = 4000; // 4 seconds
 
     private TextView tvUserIdName, tvEmpId, tvStatus, tvTimer;
     private ImageView imgProfile;
@@ -65,6 +76,16 @@ public class TimesheetActivity extends AppCompatActivity {
         btnCheckInOut = findViewById(R.id.btnCheckInOut);
         btnLogout = findViewById(R.id.btnLogout);
         calendarView = findViewById(R.id.calendarView);
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            showDailyTimesheetDialog(year, month + 1, dayOfMonth);
+        });
+
+//
+        ImageView ivBack = findViewById(R.id.ivBack);
+        ivBack.setOnClickListener(v -> finish());
+
+
+        setupDropdowns();
 
         tvUserIdName.setText(prefs.getUsername());
         tvEmpId.setText("ID: " + prefs.getUsername());
@@ -79,6 +100,67 @@ public class TimesheetActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> logout());
     }
 
+
+    private void setupDropdowns() {
+        Spinner spinnerMonth = findViewById(R.id.spinnerMonth);
+        Spinner spinnerYear = findViewById(R.id.spinnerYear);
+
+        String[] months = {"January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"};
+
+        ArrayAdapter<String> monthAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, months);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMonth.setAdapter(monthAdapter);
+
+        ArrayList<String> years = new ArrayList<>();
+        for (int y = 2020; y <= 2040; y++) years.add(String.valueOf(y));
+
+        ArrayAdapter<String> yearAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, years);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerYear.setAdapter(yearAdapter);
+    }
+
+    private void showDailyTimesheetDialog(int year, int month, int day) {
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_daily_timesheet, null);
+
+        EditText etWorkDone = dialogView.findViewById(R.id.etWorkDone);
+        EditText etBlockers = dialogView.findViewById(R.id.etBlockers);
+        EditText etTomorrow = dialogView.findViewById(R.id.etTomorrow);
+
+        Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+        Button btnSubmitDaily = dialogView.findViewById(R.id.btnSubmitDaily);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        dialog.show();
+
+        // ❌ CANCEL
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        // ✅ SUBMIT
+        btnSubmitDaily.setOnClickListener(v -> {
+
+            String workDone = etWorkDone.getText().toString().trim();
+            String blockers = etBlockers.getText().toString().trim();
+            String tomorrow = etTomorrow.getText().toString().trim();
+
+            Toast.makeText(
+                    this,
+                    "Saved:\nWork: " + workDone + "\nBlockers: " + blockers + "\nTomorrow: " + tomorrow,
+                    Toast.LENGTH_LONG
+            ).show();
+
+            dialog.dismiss();
+        });
+    }
+
+
     private void loadStatus() {
 
         api.getCheckOutStatus().enqueue(new Callback<CheckOutStatusDto>() {
@@ -92,19 +174,39 @@ public class TimesheetActivity extends AppCompatActivity {
 
                 CheckOutStatusDto status = response.body();
 
-                if ("IN".equalsIgnoreCase(status.status)) {
+                boolean backendSaysIn = "IN".equalsIgnoreCase(status.status);
+
+                // 🟢 CHECK if last check-in is today
+                boolean todaySession = false;
+                if (status.lastCheckIn != null) {
+                    todaySession = status.lastCheckIn.startsWith(
+                            LocalDateTime.now().toLocalDate().toString()
+                    );
+                }
+
+                if (backendSaysIn && todaySession) {
+
+                    // 🟢 READ total hours already worked today
+                    long oldSeconds = 0;
+                    if (status.totalHoursToday != null) {
+                        String[] parts = status.totalHoursToday.split(":");
+                        oldSeconds =
+                                Integer.parseInt(parts[0]) * 3600 +
+                                        Integer.parseInt(parts[1]) * 60 +
+                                        Integer.parseInt(parts[2]);
+                    }
+
+                    // 🟢 CONTINUE timer from previous worked hours
+                    checkInTime = LocalDateTime.now().minusSeconds(oldSeconds);
 
                     isCheckedIn = true;
-
                     tvStatus.setText("IN");
                     tvStatus.setTextColor(0xFF2E7D32);
-
-                    checkInTime = LocalDateTime.parse(status.lastCheckIn, formatter);
-
-                    startTimer();
                     btnCheckInOut.setText("CHECK OUT");
 
-                } else {
+                    startTimer();
+                }
+                else {
                     setOutUI();
                 }
             }
@@ -116,17 +218,20 @@ public class TimesheetActivity extends AppCompatActivity {
         });
     }
 
+
     private void setOutUI() {
         isCheckedIn = false;
         tvStatus.setText("OUT");
         tvStatus.setTextColor(0xFFD32F2F);
         tvTimer.setText("00:00:00");
         btnCheckInOut.setText("CHECK IN");
-    }
 
+        checkInTime = null;
+        timerHandler.removeCallbacks(timerRunnable);
+    }
     private void doCheckIn() {
 
-        api.checkInCheckout().enqueue(new Callback<CheckOutDto>() {
+        api.checkIn().enqueue(new Callback<CheckOutDto>() {
             @Override
             public void onResponse(Call<CheckOutDto> call, Response<CheckOutDto> response) {
 
@@ -136,14 +241,19 @@ public class TimesheetActivity extends AppCompatActivity {
                 }
 
                 CheckOutDto data = response.body();
-
-                Toast.makeText(TimesheetActivity.this,
-                        "Checked In at: " + data.checkInTime,
-                        Toast.LENGTH_SHORT).show();
-
                 isCheckedIn = true;
 
-                checkInTime = LocalDateTime.parse(data.checkInTime.replace(" ", "T"));
+                long oldSeconds = 0;
+                if (data.totalHours != null) {
+                    String[] parts = data.totalHours.split(":");
+                    oldSeconds =
+                            Integer.parseInt(parts[0]) * 3600 +
+                                    Integer.parseInt(parts[1]) * 60 +
+                                    Integer.parseInt(parts[2]);
+                }
+
+                // 🟢 Continue timer from old seconds
+                checkInTime = LocalDateTime.now().minusSeconds(oldSeconds);
 
                 tvStatus.setText("IN");
                 tvStatus.setTextColor(0xFF2E7D32);
@@ -160,6 +270,7 @@ public class TimesheetActivity extends AppCompatActivity {
     }
 
     private void doCheckOut() {
+
         String totalHours = tvTimer.getText().toString();
 
         api.checkOut(totalHours).enqueue(new Callback<CheckOutDto>() {
@@ -168,18 +279,17 @@ public class TimesheetActivity extends AppCompatActivity {
 
                 if (response.isSuccessful() && response.body() != null) {
 
-                    CheckOutDto data = response.body();
-
                     Toast.makeText(TimesheetActivity.this,
-                            "Checked Out at: " + data.checkOutTime,
+                            "Checked Out at: " + response.body().checkOutTime,
                             Toast.LENGTH_SHORT).show();
 
+                    // 🚀 STOP TIMER COMPLETELY
                     timerHandler.removeCallbacks(timerRunnable);
-                    setOutUI();
+                    checkInTime = null;
 
+                    setOutUI(); // Reset UI
                 } else {
-                    Toast.makeText(TimesheetActivity.this,
-                            "Checkout Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TimesheetActivity.this, "Checkout Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -192,24 +302,26 @@ public class TimesheetActivity extends AppCompatActivity {
         });
     }
 
-    private final Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (checkInTime != null) {
-                Duration diff = Duration.between(checkInTime, LocalDateTime.now());
-                long h = diff.toHours();
-                long m = diff.toMinutes() % 60;
-                long s = diff.getSeconds() % 60;
+    private final Runnable timerRunnable = this::runTimer;
 
-                tvTimer.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", h, m, s));
-            }
-            timerHandler.postDelayed(this, 1000);
+    private void runTimer() {
+        if (checkInTime != null) {
+            Duration diff = Duration.between(checkInTime, LocalDateTime.now());
+            long h = diff.toHours();
+            long m = diff.toMinutes() % 60;
+            long s = diff.getSeconds() % 60;
+
+            tvTimer.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", h, m, s));
         }
-    };
+
+        timerHandler.postDelayed(timerRunnable, 1000);
+    }
 
     private void startTimer() {
+        timerHandler.removeCallbacks(timerRunnable);
         timerHandler.post(timerRunnable);
     }
+
 
     private void logout() {
         prefs.clear();

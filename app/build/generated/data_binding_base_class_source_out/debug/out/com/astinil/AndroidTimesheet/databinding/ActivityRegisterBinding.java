@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,10 +45,13 @@ public final class ActivityRegisterBinding implements ViewBinding {
   @NonNull
   public final EditText etUsername;
 
+  @NonNull
+  public final ImageView ivBack;
+
   private ActivityRegisterBinding(@NonNull RelativeLayout rootView, @NonNull Button btnRegister,
       @NonNull EditText etConfirmPassword, @NonNull EditText etEmail, @NonNull EditText etFirstName,
       @NonNull EditText etLastName, @NonNull EditText etMobile, @NonNull EditText etPassword,
-      @NonNull EditText etUsername) {
+      @NonNull EditText etUsername, @NonNull ImageView ivBack) {
     this.rootView = rootView;
     this.btnRegister = btnRegister;
     this.etConfirmPassword = etConfirmPassword;
@@ -57,6 +61,7 @@ public final class ActivityRegisterBinding implements ViewBinding {
     this.etMobile = etMobile;
     this.etPassword = etPassword;
     this.etUsername = etUsername;
+    this.ivBack = ivBack;
   }
 
   @Override
@@ -134,8 +139,14 @@ public final class ActivityRegisterBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivBack;
+      ImageView ivBack = ViewBindings.findChildViewById(rootView, id);
+      if (ivBack == null) {
+        break missingId;
+      }
+
       return new ActivityRegisterBinding((RelativeLayout) rootView, btnRegister, etConfirmPassword,
-          etEmail, etFirstName, etLastName, etMobile, etPassword, etUsername);
+          etEmail, etFirstName, etLastName, etMobile, etPassword, etUsername, ivBack);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

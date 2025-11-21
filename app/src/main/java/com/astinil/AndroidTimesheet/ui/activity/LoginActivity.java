@@ -37,8 +37,9 @@ public class LoginActivity extends AppCompatActivity {
 
         prefs = new Prefs(this);
 
+        // 🔥 If already logged in, go to HOME page
         if (prefs.getToken() != null) {
-            goToTimesheet();
+            goToHome();
             return;
         }
 
@@ -81,10 +82,10 @@ public class LoginActivity extends AppCompatActivity {
                     prefs.saveToken(response.body().data.accessToken);
                     prefs.saveUsername(u);
 
-                    goToTimesheet();
+                    // 🔥 Move to HOME Activity
+                    goToHome();
                 } else {
                     String errorMsg = "Login failed";
-
                     try {
                         String errorBody = response.errorBody().string();
                         JSONObject obj = new JSONObject(errorBody);
@@ -105,8 +106,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void goToTimesheet() {
-        startActivity(new Intent(LoginActivity.this, TimesheetActivity.class));
+    // 🔥 OPEN HOME PAGE INSTEAD OF TIMESHEET
+    private void goToHome() {
+        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         finish();
     }
 }
